@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio Dinâmico</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f7f7f7;
+        color: #333;
+    }
+    header {
+        background: #222;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 2em;
+    }
+    header p {
+        margin: 5px 0 0;
+        font-size: 1.2em;
+    }
+    section {
+        padding: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    h2 {
+        color: #ef5350;
+    }
+    .tecnologias, .projetos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+    .tecnologia, .projeto {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        width: 200px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    .tecnologia img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+    .projeto a {
+        display: inline-block;
+        margin-top: 10px;
+        padding: 5px 10px;
+        background: #ef5350;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+    .projeto a:hover { background: #d32f2f; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1 id="nome"></h1>
+    <p id="profissao"></p>
+    <p id="sobre"></p>
+</header>
+
+<section>
+    <h2>Tecnologias</h2>
+    <div class="tecnologias" id="tecnologias"></div>
+</section>
+
+<section>
+    <h2>Projetos</h2>
+    <div class="projetos" id="projetos"></div>
+</section>
+
+<script>
+    // JSON simulado
+    const portfolioData = {
+        nome: "Seu Nome",
+        profissao: "Desenvolvedor Front-End",
+        sobre: "Sou um desenvolvedor apaixonado por criar experiências digitais incríveis.",
+        tecnologias: [
+            { nome: "HTML5", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+            { nome: "CSS3", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+            { nome: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+            { nome: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" }
+        ],
+        projetos: [
+            { nome: "Pokédex", descricao: "Aplicativo de Pokédex usando API REST", link: "#" },
+            { nome: "Jogo de Cartas Yu-Gi-Oh!", descricao: "Jogo interativo de cartas com flip e stats", link: "#" },
+            { nome: "Portfólio Dinâmico", descricao: "Meu portfólio dinâmico carregando dados via JSON", link: "#" }
+        ]
+    };
+
+    // Preencher dados do header
+    document.getElementById("nome").textContent = portfolioData.nome;
+    document.getElementById("profissao").textContent = portfolioData.profissao;
+    document.getElementById("sobre").textContent = portfolioData.sobre;
+
+    // Preencher Tecnologias
+    const tecnologiasContainer = document.getElementById("tecnologias");
+    portfolioData.tecnologias.forEach(tech => {
+        const div = document.createElement("div");
+        div.classList.add("tecnologia");
+        div.innerHTML = `
+            <img src="${tech.logo}" alt="${tech.nome}">
+            <p>${tech.nome}</p>
+        `;
+        tecnologiasContainer.appendChild(div);
+    });
+
+    // Preencher Projetos
+    const projetosContainer = document.getElementById("projetos");
+    portfolioData.projetos.forEach(proj => {
+        const div = document.createElement("div");
+        div.classList.add("projeto");
+        div.innerHTML = `
+            <h3>${proj.nome}</h3>
+            <p>${proj.descricao}</p>
+            <a href="${proj.link}" target="_blank">Ver Projeto</a>
+        `;
+        projetosContainer.appendChild(div);
+    });
+</script>
+
+</body>
+</html>
